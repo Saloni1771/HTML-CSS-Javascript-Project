@@ -1,49 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+let score={
+  win:0,
+  loss:0,
+  tie:0
+};
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cricket Game</title>
-  <style>
-    body {
-      text-align: center;
-    }
-  </style>
-</head>
-
-<body>
-  <h1>Bat Ball Stump Game</h1>
-  <button onclick="
-  //function call to generate computer choiceGenerator
-  let computerChoice=choiceGenerator();
-   //function to return result 
-  let resultMsg=returnResult(computerChoice,'Bat');
-  //alert with result popup
-  alertUser('Bat',computerChoice,resultMsg);">
-    Bat
-  </button>
-  <button onclick="
-      //function call to generate computer choice
-      computerChoice=choiceGenerator();
-       //function to return result 
-  resultMsg=returnResult(computerChoice,'Ball');
-  //alert with result popup
-  alertUser('Ball',computerChoice,resultMsg);">
-    Ball
-  </button>
-  <button onclick="
-  //function call to generate computer choice 
-  computerChoice=choiceGenerator();
-  //function to return result 
-  resultMsg=returnResult(computerChoice,'Stump');
-  //alert with result popup
-  alertUser('Stump',computerChoice,resultMsg);
-  ">
-    Stump
-  </button>
-  <script src="scripts.js">
-  </script>
-</body>
-
-</html>
+//function to get computer choice
+function choiceGenerator() {
+  randomNumber = Math.random() * 3;
+  if (randomNumber > 0 && randomNumber <= 1) {
+    return "Bat";
+  } else if (randomNumber <= 2) {
+    return "Ball";
+  } else {
+    return "Stump";
+  }
+}
+//function for returning the result
+function returnResult(compChoice, userChoice) {
+  if (compChoice === userChoice) {
+    score.tie++;
+    return "It's a tie";
+  } else if (
+    (compChoice === "Bat" && userChoice === "Ball") ||
+    (compChoice === "Ball" && userChoice === "Stump") ||
+    (compChoice === "Stump" && userChoice === "Bat")
+  ) {
+    score.loss++;
+    return "Computer Won the Game";
+  } else {
+    score.win++;
+    return "User Won the match";
+  }
+}
+//function for alert messages
+function alertUser(userChoice, compChoice, result) {
+  console.log(score);
+  alert(
+    `  'You have chosen ${userChoice}' \n'Computer Choice is ${compChoice}'\n\n "${result}
+    Won:${score.win}, Lost: ${score.loss}, Tie: ${score.tie}"`
+  );
+}
