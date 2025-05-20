@@ -2,6 +2,10 @@ let score={
   win:0,
   loss:0,
   tie:0
+   //encapsulation
+  displayScore:function(){
+    return `No. of Matches Won:${score.win}, Lost: ${score.loss}, Tie: ${score.tie}`;
+  }
 };
 
 //function to get computer choice
