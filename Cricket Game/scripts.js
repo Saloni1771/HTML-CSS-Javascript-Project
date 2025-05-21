@@ -1,12 +1,18 @@
-let score={
-  win:0,
-  loss:0,
-  tie:0
-   //encapsulation
-  displayScore:function(){
+
+
+//to store the score of the game in local storage 
+//let's you continue the game even after refreshing
+let scoreStr = localStorage.getItem("Score");
+let score;
+resetScore(scoreStr);
+function resetScore(scoreStr) {
+  //store score if scoreStr is available else reset the game
+  score = scoreStr? JSON.parse(scoreStr) : { win: 0, loss: 0, tie: 0 };
+  score.displayScore = function () {
     return `No. of Matches Won:${score.win}, Lost: ${score.loss}, Tie: ${score.tie}`;
-  }
-};
+  };
+  showResult();
+}
 
 //function to get computer choice
 function choiceGenerator() {
@@ -36,11 +42,14 @@ function returnResult(compChoice, userChoice) {
     return "User Won the match";
   }
 }
-//function for alert messages
-function alertUser(userChoice, compChoice, result) {
-  console.log(score);
-  alert(
-    `  'You have chosen ${userChoice}' \n'Computer Choice is ${compChoice}'\n\n "${result}
-    Won:${score.win}, Lost: ${score.loss}, Tie: ${score.tie}"`
-  );
+//function for show result messages
+function showResult(userChoice, compChoice, result) {
+  localStorage.setItem("Score", JSON.stringify(score));
+  document.querySelector('#user-move').innerText= userChoice?`You have chosen ${userChoice}`:''
+  document.querySelector('#computer-move').innerText= compChoice?`Computer have chosen ${compChoice}`:''
+  document.querySelector('#result').innerText= result?result:'';
+  document.querySelector('#score').innerText= score.displayScore();
+  
 }
+
+
