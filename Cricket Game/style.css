@@ -1,11 +1,31 @@
 body{
   text-align: center;
-  background-image: url("images/bg.jpeg");
+  /*only to add the another image*/
+   background-image: url("images/bg.jpeg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; 
 }
 
-
+/*code to get the background image blur + transparent*/
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("images/bg.jpeg");
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center;
+  filter: blur(2px);
+  opacity: 0.8;
+  z-index: -1;
+}
+/*change the body content design back to normal for rest of the content*/
+body>*{
+  position: relative;
+}
 h1{
   font-style: oblique;
   font-family:cursive;
@@ -20,7 +40,7 @@ h3{
   width: 150px;
   border: none;
   margin: 10px;
-  background-color: rgb(114, 84, 84);
+  background-color: rgb(208, 125, 125);
   border-radius: 50px;
   cursor: pointer;
 }
