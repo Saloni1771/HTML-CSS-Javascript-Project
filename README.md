@@ -14,13 +14,7 @@ A simple, responsive calculator that supports basic arithmetic operations.
 - Percentage calculation
 - Real-time display updates
 
-**To Do:**
-- Implement backspace (`⌫`) functionality
-- Implement toggle sign (`+/-`) functionality
-- Fix `%` to work as percentage, not modulo
-
----
-
+  
 ### 2. Bat Ball Stump Game 🏏
 A fun mini-game where the user plays against the computer by choosing between Bat, Ball, or Stump.
 
